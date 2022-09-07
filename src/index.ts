@@ -1,6 +1,3 @@
-import { foo } from './sub'
-
-export function main(): string {
-    foo()
-    return 'yay'
-}
+export * from './arbitrary'
+export * from './aws'
+export * from './test'
