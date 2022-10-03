@@ -9,8 +9,10 @@ export async function arbitrarySecretRotation<C = never, S extends SecretRotatio
     _options: { config?: C; services?: S } = {}
 ): Promise<Arbitrary<SecretRotationRequest>> {
     const arbSecretRotationEvent = await toArbitrary(SecretRotationEvent)
-    return mapArbitrary(
-        (e) => ({ raw: e, step: e.Step, secretId: e.SecretId, clientRequestToken: e.ClientRequestToken }),
-        arbSecretRotationEvent
-    )
+    return mapArbitrary(arbSecretRotationEvent, (e) => ({
+        raw: e,
+        step: e.Step,
+        secretId: e.SecretId,
+        clientRequestToken: e.ClientRequestToken,
+    }))
 }
